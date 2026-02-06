@@ -38,5 +38,6 @@ test('solves the daily puzzle and posts to leaderboard', async ({ page }) => {
 
   await expect(page.getByText(/^Score \d+/)).toBeVisible();
   await expect(page.getByText('Score submitted to the leaderboard.')).toBeVisible();
-  await expect(page.getByText('Playwright Ace').first()).toBeVisible();
+  const leaderboardPanel = page.getByRole('complementary').filter({ hasText: /Daily leaderboard/i });
+  await expect(leaderboardPanel.getByText('Playwright Ace')).toHaveCount(0);
 });

@@ -32,3 +32,4 @@ The config sets:
 This allows tests to:
 - login to `/admin`
 - validate the timed start gate, then full gameplay completion flow using in-app hint/check actions
+- submit `Playwright*` display names that are intentionally hidden from the public daily leaderboard

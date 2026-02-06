@@ -19,6 +19,7 @@ Use this file as the operational guide for future coding sessions.
 7. Admin must support viewing scheduled puzzles with pagination and optional `fromDate` filter.
 8. Game UI must support both dark and light theme, with in-browser preference persistence.
 9. Timed runs must start only after an explicit user action, and ladders stay hidden before start.
+10. Automated Playwright identities (for example `Playwright*`) must not appear in daily leaderboard output.
 
 ## Tech Stack
 - Next.js App Router + TypeScript
@@ -108,4 +109,5 @@ Before merging gameplay/admin changes, verify:
 3. leaderboard submission still occurs on run completion
 4. admin generate/reassign and pagination still work
 5. timed start gate still hides ladders before run start
-6. tests cover the changed path
+6. automated Playwright identities are hidden from daily leaderboard results
+7. tests cover the changed path

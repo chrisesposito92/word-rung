@@ -20,6 +20,7 @@ Each daily puzzle contains **3 ladders**. You connect each start word to its end
 - If you finish early, unsolved ladders score `0`.
 - If all ladders are solved, the run auto-finishes.
 - Finishing a run submits your score to the leaderboard and updates stats.
+- Automated Playwright test identities are excluded from the public daily leaderboard.
 - Players can switch between dark and light mode from the game header.
 
 ## Tech Stack

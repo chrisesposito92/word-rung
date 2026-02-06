@@ -89,6 +89,12 @@ function compareSubmissions(a: SubmissionRow, b: SubmissionRow): number {
   return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
 }
 
+const HIDDEN_LEADERBOARD_NAME_PATTERNS = [/^playwright/i];
+
+export function isHiddenLeaderboardDisplayName(displayName: string): boolean {
+  return HIDDEN_LEADERBOARD_NAME_PATTERNS.some((pattern) => pattern.test(displayName.trim()));
+}
+
 function computeCurrentStreak(completedDateKeys: string[]): number {
   const completedSet = new Set(completedDateKeys);
   let streak = 0;
@@ -453,7 +459,7 @@ export async function getDailyLeaderboard(dateKey: string, limit = 20): Promise<
   if (!isSupabaseConfigured()) {
     const store = getLocalStore();
     return store.submissions
-      .filter((row) => row.puzzle_date === dateKey)
+      .filter((row) => row.puzzle_date === dateKey && !isHiddenLeaderboardDisplayName(row.display_name))
       .sort(compareSubmissions)
       .slice(0, limit)
       .map((row) => ({
@@ -474,6 +480,7 @@ export async function getDailyLeaderboard(dateKey: string, limit = 20): Promise<
     .from('submissions')
     .select('id,display_name,total_score,total_seconds,created_at')
     .eq('puzzle_date', dateKey)
+    .not('display_name', 'ilike', 'playwright%')
     .order('total_score', { ascending: false })
     .order('total_seconds', { ascending: true })
     .order('created_at', { ascending: true })

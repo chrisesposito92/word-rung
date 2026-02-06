@@ -12,11 +12,11 @@ Build and maintain Word Rung as a production-ready daily puzzle game.
 6. Preserve player-selectable dark/light theme support in game UI.
 
 ## Key Files
-- Game loop: `/Users/chrisesposito/Documents/github/word-game-codex/src/components/game/GameClient.tsx`
-- Admin loop: `/Users/chrisesposito/Documents/github/word-game-codex/src/components/admin/AdminClient.tsx`
-- Game generation: `/Users/chrisesposito/Documents/github/word-game-codex/src/lib/game/generator.ts`
-- Validation/scoring: `/Users/chrisesposito/Documents/github/word-game-codex/src/lib/game/validator.ts`, `/Users/chrisesposito/Documents/github/word-game-codex/src/lib/game/scoring.ts`
-- Data bridge: `/Users/chrisesposito/Documents/github/word-game-codex/src/lib/data/repository.ts`
+- Game loop: `/Users/chrisesposito/Documents/github/word-rung/src/components/game/GameClient.tsx`
+- Admin loop: `/Users/chrisesposito/Documents/github/word-rung/src/components/admin/AdminClient.tsx`
+- Game generation: `/Users/chrisesposito/Documents/github/word-rung/src/lib/game/generator.ts`
+- Validation/scoring: `/Users/chrisesposito/Documents/github/word-rung/src/lib/game/validator.ts`, `/Users/chrisesposito/Documents/github/word-rung/src/lib/game/scoring.ts`
+- Data bridge: `/Users/chrisesposito/Documents/github/word-rung/src/lib/data/repository.ts`
 
 ## Deployment Model
 - Main app intended for Vercel.
@@ -24,5 +24,5 @@ Build and maintain Word Rung as a production-ready daily puzzle game.
 - Local mode must remain functional for development and tests.
 
 ## Docs
-- Feature docs live in `/Users/chrisesposito/Documents/github/word-game-codex/docs/`.
-- Database SQL source of truth: `/Users/chrisesposito/Documents/github/word-game-codex/docs/supabase-schema.sql`.
+- Feature docs live in `/Users/chrisesposito/Documents/github/word-rung/docs/`.
+- Database SQL source of truth: `/Users/chrisesposito/Documents/github/word-rung/docs/supabase-schema.sql`.

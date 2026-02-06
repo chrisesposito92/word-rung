@@ -34,6 +34,7 @@ Use this file as the operational guide for future coding sessions.
 - Game engine: `src/lib/game/*`
 - Repository/data bridge: `src/lib/data/repository.ts`
 - Supabase clients/types: `src/lib/supabase/*`
+- Supabase migrations: `supabase/migrations/*`
 - API routes: `src/app/api/**/route.ts`
 - Unit tests: `tests/unit/*`
 - E2E tests: `tests/e2e/*`
@@ -73,6 +74,11 @@ See `.env.example`.
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `ADMIN_PASSCODE`
 - `ALLOW_DEBUG_PUZZLE` (debug/testing use only)
+
+## Database Workflow
+- Canonical migration history lives in `supabase/migrations/`.
+- Apply pending schema changes with `supabase db push` (after `supabase link`).
+- `docs/supabase-schema.sql` is a manual SQL Editor fallback for bootstrap/recovery.
 
 ## Required Commands Before Completion
 1. `npm run lint`

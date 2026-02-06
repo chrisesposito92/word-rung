@@ -49,8 +49,14 @@ Defined in `.env.example`:
 
 ## Supabase Setup
 1. Create a Supabase project.
-2. Run `docs/supabase-schema.sql` in Supabase SQL Editor.
-3. Set env vars in `.env.local` (and in Vercel for production).
+2. Link CLI once: `supabase link --project-ref <your-project-ref>`.
+3. Apply baseline + pending migrations: `supabase db push`.
+4. Set env vars in `.env.local` (and in Vercel for production).
+
+Migration workflow:
+- Baseline migration file: `supabase/migrations/20260206210940_initial_schema.sql`
+- Create future migrations with `supabase migration new <name>`, then run `supabase db push`.
+- `docs/supabase-schema.sql` remains available for manual SQL Editor fallback.
 
 If Supabase env vars are missing, the app runs in local in-memory mode.
 
@@ -108,5 +114,6 @@ npm test
 - `docs/admin-portal.md`
 - `docs/testing.md`
 - `docs/supabase-schema.sql`
+- `supabase/migrations/`
 - `AGENTS.md`
 - `CLAUDE.md`

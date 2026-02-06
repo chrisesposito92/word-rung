@@ -1,6 +1,5 @@
 -- Word Rung schema
--- Manual SQL Editor fallback for bootstrap/recovery.
--- Canonical migration history is in supabase/migrations/.
+-- Initial baseline migration (mirrors docs/supabase-schema.sql)
 
 create extension if not exists pgcrypto;
 

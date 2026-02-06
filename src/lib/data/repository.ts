@@ -20,6 +20,7 @@ type PuzzleRow = {
   ladders: Json;
 };
 
+
 type SubmissionRow = {
   id: string;
   puzzle_date: string;
@@ -65,9 +66,9 @@ function mapRowToPuzzle(row: PuzzleRow): DailyPuzzle {
   });
 }
 
-function mapPuzzleToRow(puzzle: DailyPuzzle): PuzzleRow {
+function mapPuzzleToUpsertRow(puzzle: DailyPuzzle): PuzzleRow {
   return {
-    id: puzzle.id,
+    id: crypto.randomUUID(),
     puzzle_date: puzzle.puzzleDate,
     name: puzzle.name,
     seed: puzzle.seed,
@@ -317,7 +318,7 @@ export async function generateAndSchedulePuzzles(
     return { created: 0, skipped: generated.length, puzzles: generated };
   }
 
-  const rows = generated.map(mapPuzzleToRow);
+  const rows = generated.map(mapPuzzleToUpsertRow);
   const { error } = await client.from('puzzles').upsert(rows, {
     onConflict: 'puzzle_date',
     ignoreDuplicates: !overwrite,

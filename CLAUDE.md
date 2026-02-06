@@ -25,4 +25,5 @@ Build and maintain Word Rung as a production-ready daily puzzle game.
 
 ## Docs
 - Feature docs live in `/Users/chrisesposito/Documents/github/word-rung/docs/`.
-- Database SQL source of truth: `/Users/chrisesposito/Documents/github/word-rung/docs/supabase-schema.sql`.
+- Database migration source of truth: `/Users/chrisesposito/Documents/github/word-rung/supabase/migrations/`.
+- Manual SQL fallback: `/Users/chrisesposito/Documents/github/word-rung/docs/supabase-schema.sql`.

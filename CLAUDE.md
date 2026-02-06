@@ -23,6 +23,7 @@ Build and maintain Word Rung as a production-ready daily puzzle game.
 - Main app intended for Vercel.
 - Persistence and auth expected through Supabase.
 - Local mode must remain functional for development and tests.
+- CI checks run via `.github/workflows/pr-checks.yml` on pull requests and pushes to `main`.
 
 ## Docs
 - Feature docs live in `/Users/chrisesposito/Documents/github/word-rung/docs/`.

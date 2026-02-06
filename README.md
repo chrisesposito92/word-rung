@@ -94,6 +94,16 @@ npm run typecheck
 npm test
 ```
 
+## CI (GitHub Actions)
+Pull requests are validated by `.github/workflows/pr-checks.yml`.
+
+Checks run in parallel:
+- Lint + typecheck
+- Unit tests (Vitest coverage)
+- E2E tests (Playwright, Chromium)
+
+The same workflow also runs on pushes to `main`.
+
 ## Deploying to Vercel
 1. Push to GitHub.
 2. Import the repo in Vercel.

@@ -86,6 +86,11 @@ See `.env.example`.
 2. `npm run typecheck`
 3. `npm test`
 
+## CI Checks
+- GitHub Actions workflow: `.github/workflows/pr-checks.yml`
+- Runs on: pull requests and pushes to `main`
+- Jobs: lint/typecheck, unit tests, Playwright e2e
+
 ## E2E Caveat
 Playwright uses the Next dev server. If e2e fails with a `.next/dev/lock` error, there is usually another active dev server process. Ensure only one dev server is active before rerunning tests.
 

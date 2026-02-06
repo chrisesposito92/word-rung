@@ -11,6 +11,18 @@
 - `npm run test:e2e`
 - `npm test` (unit + e2e)
 
+## CI checks
+GitHub Actions workflow: `.github/workflows/pr-checks.yml`
+
+Triggers:
+- pull requests
+- pushes to `main`
+
+Jobs:
+- `lint-typecheck`
+- `unit-tests`
+- `e2e-tests`
+
 ## E2E notes
 Playwright launches the Next dev server automatically from `playwright.config.ts`.
 The config sets:

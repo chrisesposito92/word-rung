@@ -3,6 +3,7 @@ import { expect, test } from '@playwright/test';
 test('solves the daily puzzle and posts to leaderboard', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Word Rung' })).toBeVisible();
+  await expect(page.getByTestId('ladder-L1')).toHaveCount(0);
 
   const themeToggle = page.getByRole('button', { name: 'Toggle light and dark mode' });
   await themeToggle.click();
@@ -11,6 +12,7 @@ test('solves the daily puzzle and posts to leaderboard', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
 
   await page.getByLabel('Display name').fill('Playwright Ace');
+  await page.getByTestId('start-run').click();
 
   for (const ladderId of ['L1', 'L2', 'L3']) {
     for (let attempt = 0; attempt < 8; attempt += 1) {

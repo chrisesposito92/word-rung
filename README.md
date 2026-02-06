@@ -7,6 +7,7 @@ Each daily puzzle contains **3 ladders**. You connect each start word to its end
 ## Features
 - Daily 3-ladder puzzle
 - Scored gameplay (moves, hints, and time matter)
+- Explicit start button for fair timed runs
 - Light/dark theme toggle (saved in browser local storage)
 - Optional auth for persistent identity/stats
 - Daily global leaderboard
@@ -14,6 +15,7 @@ Each daily puzzle contains **3 ladders**. You connect each start word to its end
 - Local fallback mode when Supabase is not configured
 
 ## How Gameplay Works
+- Click **Start timed run** to reveal ladders and begin the timer.
 - You can solve all 3 ladders, or finish early.
 - If you finish early, unsolved ladders score `0`.
 - If all ladders are solved, the run auto-finishes.

@@ -19,4 +19,4 @@ The config sets:
 
 This allows tests to:
 - login to `/admin`
-- validate full gameplay completion flow using in-app hint/check actions
+- validate the timed start gate, then full gameplay completion flow using in-app hint/check actions

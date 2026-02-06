@@ -10,6 +10,7 @@ Build and maintain Word Rung as a production-ready daily puzzle game.
 4. Keep admin tooling capable of generating 1-10 puzzles and reassigning dates.
 5. Do not merge changes without passing lint, typecheck, unit tests, and Playwright e2e.
 6. Preserve player-selectable dark/light theme support in game UI.
+7. Keep timed runs explicit: puzzles stay hidden until the player starts the run.
 
 ## Key Files
 - Game loop: `/Users/chrisesposito/Documents/github/word-rung/src/components/game/GameClient.tsx`

@@ -197,12 +197,12 @@ export function GameClient() {
     })();
   }, [identity.userId, participantKey]);
 
-  const markStarted = useCallback(() => {
+  const handleStartRun = useCallback(() => {
+    setElapsedSeconds(0);
     setStartedAt((previous) => previous ?? Date.now());
   }, []);
 
   const updateEntry = useCallback((ladderId: string, index: number, value: string) => {
-    markStarted();
     setProgressByLadder((previous) => {
       const ladderProgress = previous[ladderId];
       if (!ladderProgress) {
@@ -222,7 +222,7 @@ export function GameClient() {
         },
       };
     });
-  }, [markStarted]);
+  }, []);
 
   const addStep = useCallback((ladderId: string) => {
     setProgressByLadder((previous) => {
@@ -263,7 +263,6 @@ export function GameClient() {
       return;
     }
 
-    markStarted();
     const ladder = puzzle.ladders.find((item) => item.id === ladderId);
     if (!ladder) {
       return;
@@ -300,14 +299,13 @@ export function GameClient() {
         },
       };
     });
-  }, [markStarted, puzzle, startedAt]);
+  }, [puzzle, startedAt]);
 
   const applyHint = useCallback((ladderId: string) => {
     if (!puzzle) {
       return;
     }
 
-    markStarted();
     const ladder = puzzle.ladders.find((item) => item.id === ladderId);
     if (!ladder) {
       return;
@@ -349,7 +347,7 @@ export function GameClient() {
         },
       };
     });
-  }, [markStarted, puzzle]);
+  }, [puzzle]);
 
   const finalizePuzzle = useCallback(async () => {
     if (!puzzle || scoreSummary || hasSubmittedRef.current) {
@@ -564,42 +562,59 @@ export function GameClient() {
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px]">
         <section className="space-y-4">
           {!scoreSummary ? (
-            <section className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[var(--wr-border)] bg-[var(--wr-surface)] p-4">
-              <p className="text-sm text-[var(--wr-text-primary)]">
-                Progress: <span className="font-mono text-[var(--wr-accent)]">{solvedLadders}</span> / {puzzle.ladders.length}{' '}
-                solved
-              </p>
-              <button
-                type="button"
-                onClick={handleFinishNow}
-                disabled={!startedAt}
-                className="rounded-md border border-[var(--wr-accent)] px-3 py-1.5 text-sm text-[var(--wr-accent)] transition hover:border-[var(--wr-accent-strong)] hover:text-[var(--wr-accent-strong)] disabled:cursor-not-allowed disabled:border-[var(--wr-border-soft)] disabled:text-[var(--wr-text-faint)]"
-              >
-                {allSolved ? 'Submit score' : 'Finish run now'}
-              </button>
-            </section>
+            startedAt ? (
+              <section className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-[var(--wr-border)] bg-[var(--wr-surface)] p-4">
+                <p className="text-sm text-[var(--wr-text-primary)]">
+                  Progress: <span className="font-mono text-[var(--wr-accent)]">{solvedLadders}</span> / {puzzle.ladders.length}{' '}
+                  solved
+                </p>
+                <button
+                  type="button"
+                  onClick={handleFinishNow}
+                  className="rounded-md border border-[var(--wr-accent)] px-3 py-1.5 text-sm text-[var(--wr-accent)] transition hover:border-[var(--wr-accent-strong)] hover:text-[var(--wr-accent-strong)]"
+                >
+                  {allSolved ? 'Submit score' : 'Finish run now'}
+                </button>
+              </section>
+            ) : (
+              <section className="rounded-2xl border border-[var(--wr-border)] bg-[var(--wr-surface)] p-5">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--wr-text-muted)]">Timed run</p>
+                <h2 className="mt-2 text-xl font-semibold text-[var(--wr-text-heading)]">Start when you&apos;re ready</h2>
+                <p className="mt-2 text-sm text-[var(--wr-text-primary)]">
+                  The puzzle stays hidden until you start. Your timer begins the moment you click the button.
+                </p>
+                <button
+                  type="button"
+                  onClick={handleStartRun}
+                  data-testid="start-run"
+                  className="mt-4 rounded-md bg-[var(--wr-accent)] px-4 py-2 text-sm font-semibold text-[var(--wr-accent-contrast)] transition hover:bg-[var(--wr-accent-strong)]"
+                >
+                  Start timed run
+                </button>
+              </section>
+            )
           ) : null}
 
-          {puzzle.ladders.map((ladder) => {
-            const progress = progressByLadder[ladder.id];
-            if (!progress) {
-              return null;
-            }
+          {!startedAt && !scoreSummary ? null : puzzle.ladders.map((ladder) => {
+              const progress = progressByLadder[ladder.id];
+              if (!progress) {
+                return null;
+              }
 
-            return (
-              <LadderCard
-                key={ladder.id}
-                ladder={ladder}
-                progress={progress}
-                disabled={Boolean(scoreSummary)}
-                onEntryChange={(index, value) => updateEntry(ladder.id, index, value)}
-                onAddStep={() => addStep(ladder.id)}
-                onRemoveStep={() => removeStep(ladder.id)}
-                onCheck={() => checkLadder(ladder.id)}
-                onHint={() => applyHint(ladder.id)}
-              />
-            );
-          })}
+              return (
+                <LadderCard
+                  key={ladder.id}
+                  ladder={ladder}
+                  progress={progress}
+                  disabled={Boolean(scoreSummary)}
+                  onEntryChange={(index, value) => updateEntry(ladder.id, index, value)}
+                  onAddStep={() => addStep(ladder.id)}
+                  onRemoveStep={() => removeStep(ladder.id)}
+                  onCheck={() => checkLadder(ladder.id)}
+                  onHint={() => applyHint(ladder.id)}
+                />
+              );
+            })}
 
           {scoreSummary ? (
             <section className="rounded-2xl border border-[var(--wr-success)] bg-[var(--wr-success-soft)] p-5">

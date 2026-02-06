@@ -38,7 +38,7 @@ Puzzle bonuses:
 - `+60` if all ladders are solved with no hints (but not all at par)
 
 ## Win condition
-Players can finish a run at any time.
+Players begin a timed run by clicking a start button, then can finish at any time.
 
 - Solved ladders score normally.
 - Unsolved ladders score `0`.
@@ -47,5 +47,6 @@ Players can finish a run at any time.
 If all 3 ladders are solved, the run auto-finishes immediately.
 
 ## UI behavior
+- Ladder cards remain hidden until the player explicitly starts the run.
 - The game header includes a dark/light mode toggle.
 - Theme preference is stored in browser local storage (`word-rung-theme`) for future visits.

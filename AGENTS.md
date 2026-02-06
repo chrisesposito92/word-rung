@@ -18,6 +18,7 @@ Use this file as the operational guide for future coding sessions.
 6. Admin puzzle generation must remain constrained to **1-10 puzzles** per request.
 7. Admin must support viewing scheduled puzzles with pagination and optional `fromDate` filter.
 8. Game UI must support both dark and light theme, with in-browser preference persistence.
+9. Timed runs must start only after an explicit user action, and ladders stay hidden before start.
 
 ## Tech Stack
 - Next.js App Router + TypeScript
@@ -101,4 +102,5 @@ Before merging gameplay/admin changes, verify:
 2. manual finish flow still works
 3. leaderboard submission still occurs on run completion
 4. admin generate/reassign and pagination still work
-5. tests cover the changed path
+5. timed start gate still hides ladders before run start
+6. tests cover the changed path
